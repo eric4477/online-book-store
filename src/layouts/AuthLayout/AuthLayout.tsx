@@ -3,13 +3,12 @@ import authImage from "../../assets/images/auth-layout-books.jpg";
 
 function AuthLayout() {
   return (
-    <div className="flex flex-row h-screen">
-      <div className="w-1/2">
-        <img
-          className="w-full h-full object-cover"
-          src={authImage}
-          alt="auth-image"
-        />
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
+      <div
+        className="hidden md:block bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${authImage})` }}
+      >
+        <div className="absolute inset-0 bg-black opacity-30"></div>
       </div>
       <Outlet />
     </div>
