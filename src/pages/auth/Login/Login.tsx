@@ -1,5 +1,7 @@
+import { useState } from "react";
 import logoImg from "../../../assets/images/Logo.png";
-import { LoginFormInputs } from "../../../interfaces/LoginFormInputs";
+import { LoginData } from "../../../interfaces/LoginData";
+import { login } from "../../../api/authService";
 import { useForm, Controller } from "react-hook-form";
 import {
   TextField,
@@ -19,13 +21,24 @@ function Login() {
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: false,
     },
   });
 
-  const onSubmit = (data: LoginFormInputs) => {
+  const onSubmit = async (data: LoginData) => {
     console.log(data);
+    try {
+      const response = await login(data);
+      console.log("Login successful:", response);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Login error:", error.message);
+      } else {
+        console.error("Login error: An unexpected error occurred");
+      }
+    }
   };
+
+  const [rememberMe, setRememberMe] = useState(false);
 
   return (
     <div className="login-page flex-grow pt-12">
@@ -163,20 +176,15 @@ function Login() {
           </FormControl>
           <FormControlLabel
             control={
-              <Controller
-                name="rememberMe"
-                control={control}
-                render={({ field }) => (
-                  <Checkbox
-                    {...field}
-                    sx={{
-                      color: "#6251DD",
-                      "&.Mui-checked": {
-                        color: "#6251DD",
-                      },
-                    }}
-                  />
-                )}
+              <Checkbox
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                sx={{
+                  color: "#6251DD",
+                  "&.Mui-checked": {
+                    color: "#6251DD",
+                  },
+                }}
               />
             }
             label="Remember Me"
