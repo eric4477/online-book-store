@@ -10,6 +10,6 @@
   box-sizing: border-box;
 }
 
-.MuiButtonBase-root {
+.social-navbar .MuiIconButton-root {
   padding: 0 !important;
 }
