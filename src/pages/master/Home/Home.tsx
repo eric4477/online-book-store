@@ -1,11 +1,9 @@
-import SocialNavbar from "../../../shared/SocialNavbar";
+import Navbar from "./components/Navbar";
 
 function Home() {
   return (
-    <div className="font-inter">
-      <header>
-        <SocialNavbar />
-      </header>
+    <div className="home-page font-inter">
+      <Navbar />
     </div>
   );
 }
