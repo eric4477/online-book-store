@@ -41,7 +41,7 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
-    <div className="login-page flex-grow pt-12">
+    <div className="login-page flex-grow pt-12 font-manrope">
       <div className="login-logo flex items-center justify-center">
         <img className="object-cover" src={logoImg} alt="logo" />
       </div>
