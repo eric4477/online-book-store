@@ -13,3 +13,8 @@
 .social-navbar .MuiIconButton-root {
   padding: 0 !important;
 }
+
+.home-navbar .MuiIconButton-root {
+  padding: 0 !important;
+  font-size: 2rem;
+}
