@@ -9,7 +9,7 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
-import CustomIcon from "../assets/icons/CustomIcon";
+import CustomIcon from "../assets/images/customIcon.svg";
 
 const HamburgerMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -49,6 +49,7 @@ const HamburgerMenu = () => {
           style: {
             display: "flex",
             flexDirection: "column",
+            backgroundColor: "#ED553B",
             alignItems: "center",
             gap: "15px",
             padding: "15px",
@@ -56,19 +57,19 @@ const HamburgerMenu = () => {
         }}
       >
         <a href="#" onClick={handleClose}>
-          <FaFacebookF className="text-[20px]" />
+          <FaFacebookF className="text-[20px] text-white" />
         </a>
         <a href="#" onClick={handleClose}>
-          <FaInstagram className="text-[20px]" />
+          <FaInstagram className="text-[20px] text-white" />
         </a>
         <a href="#" onClick={handleClose}>
-          <FaLinkedinIn className="text-[20px]" />
+          <FaLinkedinIn className="text-[20px] text-white" />
         </a>
         <a href="#" onClick={handleClose}>
-          <FaTwitter className="text-[20px]" />
+          <FaTwitter className="text-[20px] text-white" />
         </a>
         <a href="#" onClick={handleClose}>
-          <CustomIcon color="black" />
+          <img src={CustomIcon} alt="custom icon" />
         </a>
       </Menu>
     </div>

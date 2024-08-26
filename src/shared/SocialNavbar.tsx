@@ -6,7 +6,7 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
-import CustomIcon from "../assets/icons/CustomIcon";
+import CustomIcon from "../assets/images/customIcon.svg";
 
 function SocialNavbar() {
   return (
@@ -32,7 +32,7 @@ function SocialNavbar() {
           <FaTwitter className="text-[20px]" />
         </a>
         <a href="#">
-          <CustomIcon color="white" />
+          <img src={CustomIcon} alt="custom icon" />
         </a>
       </div>
       <HamburgerMenu />
