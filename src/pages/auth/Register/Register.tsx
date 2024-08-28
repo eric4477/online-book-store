@@ -5,13 +5,11 @@ import { authUrls } from "../../../constants/URL_END_POINTS";
 import { useNavigate } from "react-router-dom";
 import { TextField, Box, FormControl, Button, MenuItem } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { emailValidation } from "../../../constants/VALIDATIONS";
 
 function Register() {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState<null | string>(null);
   const {
     control,
     handleSubmit,
@@ -34,8 +32,7 @@ function Register() {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 409) {
-          console.error("This email already exists.");
-          setErrorMessage("This email already exists.");
+          toast.error("This email already exists");
         }
       }
     }
@@ -350,11 +347,6 @@ function Register() {
               )}
             />
           </FormControl>
-          {errorMessage ? (
-            <span className="text-red-500 leading-4">{errorMessage}</span>
-          ) : (
-            ""
-          )}
           <div className="form-btns flex flex-col mt-8">
             <Button
               type="submit"
