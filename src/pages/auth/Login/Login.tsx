@@ -48,11 +48,11 @@ function Login() {
 
   return (
     <div className="login-page flex-grow pt-12 font-manrope">
-      <div className="login-logo flex items-center justify-center">
+      <div className="logo flex items-center justify-center">
         <img className="object-cover" src={logoImg} alt="logo" />
       </div>
-      <div className="login-container flex flex-col w-[80%] md:w[70%] lg:w-[65%] mx-auto mt-5 pb-4">
-        <div className="login-header flex flex-col gap-2">
+      <div className="form-wrapper flex flex-col w-[80%] md:w[70%] lg:w-[65%] mx-auto mt-5 pb-4">
+        <div className="header flex flex-col gap-2">
           <h3 className="sub-header text-gray-500 font-semibold text-xl">
             Welcome back!
           </h3>
@@ -64,8 +64,11 @@ function Login() {
           component="form"
           className="flex flex-col mt-4"
           onSubmit={handleSubmit(onSubmit)}
+          sx={{
+            display: "inline-block",
+          }}
         >
-          <FormControl margin="normal" fullWidth>
+          <FormControl margin="dense" fullWidth>
             <label
               htmlFor="email"
               className="text-[#090937] font-semibold mb-2"
@@ -117,7 +120,7 @@ function Login() {
               )}
             />
           </FormControl>
-          <FormControl margin="normal" fullWidth>
+          <FormControl margin="dense" fullWidth>
             <label
               htmlFor="password"
               className="text-[#090937] font-semibold mb-2"
@@ -178,6 +181,26 @@ function Login() {
               )}
             />
           </FormControl>
+          <Button
+            disableRipple
+            sx={{
+              textTransform: "none",
+              fontSize: "0.875rem",
+              fontWeight: 700,
+              color: "#6251DD",
+              fontFamily: '"Manrope", "sans-serif"',
+              margin: "0",
+              padding: "0",
+              display: "block",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot Password?
+          </Button>
+
           <FormControlLabel
             control={
               <Checkbox
@@ -200,7 +223,7 @@ function Login() {
               },
             }}
           />
-          <div className="form-btns flex flex-col mt-8">
+          <div className="form-btns flex flex-col mt-7">
             <Button
               type="submit"
               variant="contained"
