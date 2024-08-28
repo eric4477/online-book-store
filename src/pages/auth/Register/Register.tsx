@@ -39,12 +39,12 @@ function Register() {
   };
 
   return (
-    <div className="login-page flex-grow pt-12 font-manrope">
-      <div className="login-logo flex items-center justify-center">
+    <div className="register-page flex-grow pt-12 font-manrope">
+      <div className="logo flex items-center justify-center">
         <img className="object-cover" src={logoImg} alt="logo" />
       </div>
-      <div className="login-container flex flex-col w-[80%] md:w[70%] lg:w-[65%] mx-auto mt-8 pb-4">
-        <div className="login-header flex flex-col gap-2">
+      <div className="form-wrapper flex flex-col w-[80%] md:w[70%] lg:w-[65%] mx-auto mt-8 pb-4">
+        <div className="header flex flex-col gap-2">
           <h3 className="sub-header text-gray-500 font-semibold text-xl">
             Create new acccount
           </h3>
@@ -347,7 +347,7 @@ function Register() {
               )}
             />
           </FormControl>
-          <div className="form-btns flex flex-col mt-8">
+          <div className="form-btns flex flex-col mt-5">
             <Button
               type="submit"
               variant="contained"
