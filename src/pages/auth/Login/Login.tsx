@@ -1,8 +1,12 @@
 import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import logoImg from "../../../assets/images/Logo.png";
-import { LoginData } from "../../../interfaces/LoginData";
-import { login } from "../../../api/authService";
+import { LoginData } from "../../../interfaces/AuthData";
 import { useForm, Controller } from "react-hook-form";
+import { authUrls } from "../../../constants/URL_END_POINTS";
+import { emailValidation } from "../../../constants/VALIDATIONS";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Box,
@@ -13,11 +17,12 @@ import {
 } from "@mui/material";
 
 function Login() {
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginData>({
     defaultValues: {
       email: "",
       password: "",
@@ -25,15 +30,16 @@ function Login() {
   });
 
   const onSubmit = async (data: LoginData) => {
-    console.log(data);
     try {
-      const response = await login(data);
-      console.log("Login successful:", response);
+      await axios.post(`${authUrls.login}`, data);
+      navigate("/home");
     } catch (error) {
-      if (error instanceof Error) {
-        console.error("Login error:", error.message);
-      } else {
-        console.error("Login error: An unexpected error occurred");
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 401) {
+          toast.error("Incorrect email or password");
+        } else if (error.response.status === 404) {
+          toast.error("Account doesn't exist");
+        }
       }
     }
   };
@@ -45,7 +51,7 @@ function Login() {
       <div className="login-logo flex items-center justify-center">
         <img className="object-cover" src={logoImg} alt="logo" />
       </div>
-      <div className="login-container flex flex-col w-[80%] md:w-[65%] mx-auto mt-4 pb-4">
+      <div className="login-container flex flex-col w-[80%] md:w[70%] lg:w-[65%] mx-auto mt-5 pb-4">
         <div className="login-header flex flex-col gap-2">
           <h3 className="sub-header text-gray-500 font-semibold text-xl">
             Welcome back!
@@ -69,13 +75,7 @@ function Login() {
             <Controller
               name="email"
               control={control}
-              rules={{
-                required: "Email is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "Invalid email address",
-                },
-              }}
+              rules={emailValidation}
               render={({ field }) => (
                 <TextField
                   id="email"
@@ -129,6 +129,10 @@ function Login() {
               control={control}
               rules={{
                 required: "Password is required",
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{3,}$/,
+                  message: "Invalid password",
+                },
               }}
               render={({ field }) => (
                 <TextField
@@ -236,6 +240,7 @@ function Login() {
                   backgroundColor: "#6251DD",
                 },
               }}
+              onClick={() => navigate("/register")}
             >
               Register
             </Button>
