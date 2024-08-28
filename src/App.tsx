@@ -3,6 +3,9 @@ import Login from "./pages/auth/Login/Login";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import MasterLayout from "./layouts/MasterLayout/MasterLayout";
 import Home from "./pages/master/Home/Home";
+import Register from "./pages/auth/Register/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const routes = createBrowserRouter([
   {
@@ -11,6 +14,7 @@ const routes = createBrowserRouter([
     children: [
       { index: true, element: <Login /> },
       { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
     ],
   },
   {
@@ -24,7 +28,12 @@ const routes = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={routes} />;
+  return (
+    <>
+      <RouterProvider router={routes} />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;
