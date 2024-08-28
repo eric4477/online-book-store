@@ -6,6 +6,7 @@ import Home from "./pages/master/Home/Home";
 import Register from "./pages/auth/Register/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgotPass from "./pages/auth/ForgotPass/ForgotPass";
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const routes = createBrowserRouter([
       { index: true, element: <Login /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "forgot-password", element: <ForgotPass /> },
     ],
   },
   {

@@ -10,3 +10,7 @@ export interface RegisterData {
   email: string;
   role: string;
 }
+
+export interface ForgotPassData {
+  email: string;
+}
