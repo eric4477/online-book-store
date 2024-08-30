@@ -14,3 +14,9 @@ export interface RegisterData {
 export interface ForgotPassData {
   email: string;
 }
+
+export interface ResetPassData {
+  otp: string;
+  email: string;
+  password: string;
+}
