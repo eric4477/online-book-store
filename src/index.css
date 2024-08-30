@@ -18,3 +18,24 @@
   padding: 0 !important;
   font-size: 2rem;
 }
+
+.linear-gradient-hero-bg {
+  background: linear-gradient(
+    to right,
+    #ffe6e6 8.52%,
+    #f5fffe 68.88%,
+    #ffffff 101.74%
+  );
+}
+
+.swiper-pagination-bullet {
+  background-color: #bebebe; /* Example: tomato color */
+  width: 12px; /* Custom width */
+  height: 12px; /* Custom height */
+  opacity: 1; /* Make sure the dots are fully visible */
+}
+
+/* Customize the active pagination dot */
+.swiper-pagination-bullet-active {
+  background-color: #ed553b; /* Example: green color */
+}
