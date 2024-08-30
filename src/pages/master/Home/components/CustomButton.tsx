@@ -5,7 +5,7 @@ export default function CustomButton({ children }: { children: ReactNode }) {
   return (
     <button
       className="border border-[#393280] flex items-center justify-center gap-1
-      rounded-md px-6 py-3 uppercase text-sm md:text-base font-normal tracking-wider text-[#393280]"
+      rounded-md px-6 py-[2vw] min-500:py-3 uppercase text-sm md:text-base max-[500px]:text-[3vw] font-normal tracking-wider text-[#393280]"
     >
       {children}
       <img src={rightArrow} alt="right arrow" />
