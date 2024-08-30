@@ -12,7 +12,7 @@ import CustomButton from "./CustomButton";
 function Hero() {
   const swiperRef = useRef<SwiperCore | null>(null);
   return (
-    <section className="hero-section px-24 linear-gradient-hero-bg relative max-lg:px-16 max-sm:px-10">
+    <section className="hero-section linear-gradient-hero-bg relative">
       <Swiper
         modules={[Pagination]}
         pagination={{ clickable: true }}
@@ -22,7 +22,7 @@ function Hero() {
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
         <SwiperSlide>
-          <div className="slider-content flex flex-row max-lg:flex-col gap-4">
+          <div className="slider-content px-24 max-lg:px-16 max-sm:px-10 flex flex-row max-lg:flex-col gap-4">
             <div className="py-[100px] grow max-lg:pb-[20px]">
               <h1 className="text-4xl min-500:text-5xl lg:text-6xl text-[#393280] font-semibold mb-4">
                 Ipsum Dolor Si
@@ -44,7 +44,7 @@ function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="slider-content flex flex-row max-lg:flex-col gap-4">
+          <div className="slider-content flex flex-row max-lg:flex-col gap-4 px-24 max-lg:px-16 max-sm:px-10">
             <div className="py-[100px] grow max-lg:pb-[20px]">
               <h1 className="text-4xl min-500:text-5xl lg:text-6xl text-[#393280] font-semibold mb-4">
                 Sed Libero Euismod
@@ -66,7 +66,7 @@ function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="slider-content flex flex-row max-lg:flex-col gap-4">
+          <div className="slider-content flex flex-row max-lg:flex-col gap-4 px-24 max-lg:px-16 max-sm:px-10">
             <div className="py-[100px] grow max-lg:pb-[20px]">
               <h1 className="text-4xl min-500:text-5xl lg:text-6xl text-[#393280] font-semibold mb-4">
                 Lorem Vitae Enim
@@ -88,7 +88,7 @@ function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="slider-content flex flex-row max-lg:flex-col gap-4">
+          <div className="slider-content flex flex-row max-lg:flex-col gap-4 px-24 max-lg:px-16 max-sm:px-10">
             <div className="py-[100px] grow max-lg:pb-[20px]">
               <h1 className="text-4xl min-500:text-5xl lg:text-6xl text-[#393280] font-semibold mb-4">
                 Amet Elit Commodo
@@ -113,14 +113,14 @@ function Hero() {
       {/* Custom Navigation Buttons */}
       <button
         className="absolute left-4 top-1/2 transform -translate-y-1/2 rounded-full 
-        py-2 px-2 border border-[#ED553B] bg-white max-[550px]:hidden"
+        py-2 px-2 border border-[#ED553B] bg-white max-[550px]:hidden z-20"
         onClick={() => swiperRef.current?.slidePrev()}
       >
         <GoArrowLeft fill="#ED553B" size={20} />
       </button>
       <button
         className="absolute right-4 top-1/2 transform -translate-y-1/2 rounded-full 
-        py-2 px-2 border border-[#ED553B] bg-white max-[550px]:hidden"
+        py-2 px-2 border border-[#ED553B] bg-white max-[550px]:hidden z-20"
         onClick={() => swiperRef.current?.slideNext()}
       >
         <GoArrowRight fill="#ED553B" size={20} />

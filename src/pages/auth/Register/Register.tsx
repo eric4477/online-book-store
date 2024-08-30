@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { TextField, Box, FormControl, Button, MenuItem } from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { emailValidation } from "../../../constants/VALIDATIONS";
+import {
+  emailValidation,
+  passwordValidation,
+} from "../../../constants/VALIDATIONS";
 
 function Register() {
   const navigate = useNavigate();
@@ -233,14 +236,7 @@ function Register() {
             <Controller
               name="password"
               control={control}
-              rules={{
-                required: "Password is required",
-                pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{3,}$/,
-                  message:
-                    "Sorry, the password must contain at least 3 characters, one uppercase letter, one lowercase letter, one number, one special character",
-                },
-              }}
+              rules={passwordValidation}
               render={({ field }) => (
                 <TextField
                   id="password"
