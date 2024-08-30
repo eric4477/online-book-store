@@ -1,5 +1,6 @@
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import logoImg from "../../../assets/images/Logo.png";
 import { ForgotPassData } from "../../../interfaces/AuthData";
 import axios from "axios";
@@ -8,6 +9,7 @@ import { emailValidation } from "../../../constants/VALIDATIONS";
 import { toast } from "react-toastify";
 
 function ForgotPass() {
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -21,6 +23,7 @@ function ForgotPass() {
     try {
       await axios.post(`${authUrls.forgotPass}`, data);
       toast.success("Successfully sent!");
+      navigate("/reset-password");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 404) {
@@ -40,7 +43,7 @@ function ForgotPass() {
             Welcome back!
           </h3>
           <h2 className="text-2xl text-[#090937] font-bold">
-            Forget Password !!
+            Forgot Password !!
           </h2>
         </div>
         <Box
