@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import logoImg from "../../../assets/images/Logo.png";
@@ -7,6 +7,8 @@ import { useForm, Controller } from "react-hook-form";
 import { authUrls } from "../../../constants/URL_END_POINTS";
 import { emailValidation } from "../../../constants/VALIDATIONS";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToken, clearToken } from "../../../redux/authSlice";
 import {
   TextField,
   Box,
@@ -17,6 +19,7 @@ import {
 } from "@mui/material";
 
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     control,
@@ -31,8 +34,10 @@ function Login() {
 
   const onSubmit = async (data: LoginData) => {
     try {
-      await axios.post(`${authUrls.login}`, data);
+      const response = await axios.post(`${authUrls.login}`, data);
       navigate("/home");
+      localStorage.setItem("token", response.data.data.accessToken);
+      dispatch(setToken(localStorage.getItem("token")));
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 401) {
@@ -45,6 +50,10 @@ function Login() {
   };
 
   const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    dispatch(clearToken());
+  }, []);
 
   return (
     <div className="login-page flex-grow pt-12 font-manrope">
