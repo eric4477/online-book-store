@@ -10,3 +10,9 @@ export const authUrls = {
   changePass: `${baseAuth}/change-password`,
   logout: `${baseAuth}/logout`,
 };
+
+export const masterUrls = {
+  getBooks: (page = 1, limit: number) => {
+    return `${baseUrl}/book?page=${page}&limit=${limit}`;
+  },
+};

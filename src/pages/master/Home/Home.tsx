@@ -1,6 +1,7 @@
 import Categories from "./components/Categories";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import NewRelease from "./components/NewRelease";
 
 function Home() {
   return (
@@ -8,6 +9,7 @@ function Home() {
       <Navbar />
       <Hero />
       <Categories />
+      <NewRelease />
     </div>
   );
 }
