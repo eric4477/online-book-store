@@ -15,7 +15,7 @@ export default function Categories() {
       </h1>
       <div className="categories flex flex-row justify-center lg:justify-between flex-wrap gap-y-8 gap-x-4 mt-8">
         {categories.map((category, index) => (
-          <div className="category text-center ">
+          <div key={index} className="category text-center">
             <div className="w-full">
               <img
                 className="object-cover"
