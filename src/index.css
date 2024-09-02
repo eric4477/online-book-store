@@ -39,3 +39,28 @@
 .swiper-pagination-bullet-active {
   background-color: #ed553b; /* Example: green color */
 }
+
+.add-to-cart-btn {
+  position: absolute;
+  bottom: 25%;
+  left: 10%;
+  right: 10%;
+  background-color: #ee4122;
+  color: white;
+  padding: 12px 12px;
+  text-transform: uppercase;
+  border: none;
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #e83111;
+}
+
+.book-img-wrapper:hover .add-to-cart-btn {
+  visibility: visible; /* This will make the button visible on hover */
+  opacity: 1;
+}
