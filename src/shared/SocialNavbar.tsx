@@ -1,5 +1,5 @@
 import { BsFillTelephoneFill } from "react-icons/bs";
-import HamburgerMenu from "./HamburgerMenu";
+import SocialHamburgerMenu from "./SocialHamburgerMenu";
 import {
   FaFacebookF,
   FaInstagram,
@@ -35,7 +35,7 @@ function SocialNavbar() {
           <img src={CustomIcon} alt="custom icon" />
         </a>
       </div>
-      <HamburgerMenu />
+      <SocialHamburgerMenu />
     </nav>
   );
 }

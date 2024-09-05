@@ -1,79 +1,132 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { IconButton, Drawer, List } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
+import profileIcon from "../assets/images/profile-icon.svg";
+import heartIcon from "../assets/images/heart-icon.svg";
+import shoppingIcon from "../assets/images/shopping-icon.svg";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa";
-import CustomIcon from "../assets/images/customIcon.svg";
+export default function HamburgerMenu() {
+  const { showLinks } = useSelector((state: RootState) => state.navbar);
+  const [isOpen, setIsOpen] = useState(false);
 
-const HamburgerMenu = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const toggleDrawer =
+    (open: boolean) =>
+    (
+      event:
+        | React.KeyboardEvent<Element>
+        | React.MouseEvent<Element, MouseEvent>
+    ) => {
+      if (
+        (event.type === "keydown" &&
+          (event as React.KeyboardEvent<Element>).key === "Tab") ||
+        (event as React.KeyboardEvent<Element>).key === "Shift"
+      ) {
+        return;
+      }
+      setIsOpen(open);
+    };
 
   return (
-    <div className="sm:hidden">
+    <div className="min-[1101px]:hidden">
       <IconButton
-        className="p-0"
         edge="start"
         color="inherit"
         aria-label="menu"
-        onClick={handleClick}
+        className="hamburger-icon"
+        onClick={toggleDrawer(true)}
+        sx={{
+          "& .MuiSvgIcon-root": {
+            fontSize: "2rem",
+          },
+        }}
       >
         <MenuIcon />
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        sx={{
-          "& .MuiMenu-paper": {
-            "@media (min-width: 640px)": {
-              display: "none",
-            },
-            marginTop: "7px",
-          },
-        }}
-        MenuListProps={{
-          style: {
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: "#ED553B",
-            alignItems: "center",
-            gap: "15px",
-            padding: "15px",
-          },
-        }}
-      >
-        <a href="#" onClick={handleClose}>
-          <FaFacebookF className="text-[20px] text-white" />
-        </a>
-        <a href="#" onClick={handleClose}>
-          <FaInstagram className="text-[20px] text-white" />
-        </a>
-        <a href="#" onClick={handleClose}>
-          <FaLinkedinIn className="text-[20px] text-white" />
-        </a>
-        <a href="#" onClick={handleClose}>
-          <FaTwitter className="text-[20px] text-white" />
-        </a>
-        <a href="#" onClick={handleClose}>
-          <img src={CustomIcon} alt="custom icon" />
-        </a>
-      </Menu>
+
+      <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)}>
+        <div
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
+          style={{
+            width: 250,
+            paddingTop: "30px",
+          }}
+        >
+          {showLinks && (
+            <List className="flex flex-col items-center gap-5">
+              <a
+                href="#"
+                className="uppercase text-lg font-medium text-[#111111] hover:text-[#ED553B] max-sm:text-base"
+              >
+                home
+              </a>
+              <a
+                href="#about-us"
+                className="uppercase text-lg font-medium text-[#111111] hover:text-[#ED553B] max-sm:text-base"
+              >
+                ABOUT US
+              </a>
+
+              <a
+                href="#books"
+                className="uppercase text-lg font-medium text-[#111111] hover:text-[#ED553B] max-sm:text-base"
+              >
+                BOOKS
+              </a>
+
+              <a
+                href="#new-release"
+                className="uppercase text-lg font-medium text-[#111111] hover:text-[#ED553B] max-sm:text-base"
+              >
+                NEW RELEASE
+              </a>
+
+              <a
+                href="#contact-us"
+                className="uppercase text-lg font-medium text-[#111111] hover:text-[#ED553B] max-sm:text-base"
+              >
+                CONTACT US
+              </a>
+
+              <a
+                href="#blog"
+                className="uppercase text-lg font-medium text-[#111111] hover:text-[#ED553B] max-sm:text-base"
+              >
+                BLOG
+              </a>
+            </List>
+          )}
+          <div
+            className={`flex items-center justify-center gap-5 mt-16 ${
+              showLinks ? "flex-row" : "flex-col"
+            }`}
+          >
+            <button>
+              <img src={profileIcon} alt="profile button" />
+            </button>
+            {showLinks ? (
+              <span className="w-[2px] h-5 bg-[#D1D1D1]" />
+            ) : (
+              <span className="w-[40px] h-[2px] bg-[#393280]" />
+            )}
+
+            <button>
+              <img src={shoppingIcon} alt="profile button" />
+            </button>
+            {showLinks ? (
+              <span className="w-[2px] h-5 bg-[#D1D1D1]" />
+            ) : (
+              <span className="w-[40px] h-[2px] bg-[#393280]" />
+            )}
+            <button>
+              <img src={heartIcon} alt="profile button" />
+            </button>
+          </div>
+        </div>
+      </Drawer>
     </div>
   );
-};
-
-export default HamburgerMenu;
+}
