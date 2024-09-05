@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPass from "./pages/auth/ForgotPass/ForgotPass";
 import ResetPass from "./pages/auth/ResetPass/ResetPass";
+import Products from "./pages/master/products/Products";
 
 const routes = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const routes = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "home", element: <Home /> },
+      { path: "products", element: <Products /> },
     ],
   },
 ]);
