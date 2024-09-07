@@ -8,9 +8,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { masterUrls } from "../../../../constants/URL_END_POINTS";
+import { useNavigate } from "react-router-dom";
 import { Book } from "../../../../interfaces/MasterData";
 
 function NewRelease() {
+  const navigate = useNavigate();
   const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
@@ -56,9 +58,9 @@ function NewRelease() {
         pagination={{ clickable: true, el: ".custom-swiper-pagination" }}
         autoplay={{ delay: 2500 }}
       >
-        {books.map((book, index) => (
-          <SwiperSlide key={index} className="px-4">
-            <BookCard key={book.id} book={book} />
+        {books.map((book) => (
+          <SwiperSlide key={book._id} className="px-4">
+            <BookCard book={book} />
           </SwiperSlide>
         ))}
         <hr className="mt-7 border border-[#E0E0E0] mx-2 mb-6" />
@@ -66,7 +68,10 @@ function NewRelease() {
           <div className="flex-1 flex justify-center items-center text-center pl-40 max-[600px]:p-0">
             <div className="custom-swiper-pagination"></div>
           </div>
-          <button className="text-base font-bold text-[#ED553B] flex justify-center items-center gap-1">
+          <button
+            className="text-base font-bold text-[#ED553B] flex justify-center items-center gap-1"
+            onClick={() => navigate("/home/products")}
+          >
             View all products
             <img src={redRightArrow} alt="right arrow" />
           </button>
