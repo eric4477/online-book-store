@@ -2,14 +2,15 @@ import { Book } from "../interfaces/MasterData";
 import { getRandomBookImg } from "../constants/FUNCTIONS";
 import { getRandomBookName } from "../constants/FUNCTIONS";
 import { getRandomBookAuthor } from "../constants/FUNCTIONS";
+import { memo } from "react";
 
 function BookCard({ book }: { book: Book }) {
   const bookImgSrc = getRandomBookImg();
   const bookName = getRandomBookName();
   const bookAuthor = getRandomBookAuthor();
   return (
-    <div className="book-card text-center max-w-[320px] ">
-      <div className="book-img-wrapper py-4 px-3 bg-white shadow-lg  flex items-center justify-center relative">
+    <div className="book-card text-center max-w-[320px]">
+      <div className="book-img-wrapper py-4 px-3 bg-white shadow-custom-light flex items-center justify-center relative">
         <img className=" w-full h-full" src={bookImgSrc} alt="book image" />
         <button className="add-to-cart-btn tracking-widest shadow-lg text-base max-[400px]:text-sm">
           add to cart
@@ -25,4 +26,4 @@ function BookCard({ book }: { book: Book }) {
   );
 }
 
-export default BookCard;
+export default memo(BookCard);
