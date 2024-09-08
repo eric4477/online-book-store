@@ -23,7 +23,7 @@ function Register() {
       last_name: "",
       password: "",
       email: "",
-      role: "Admin",
+      role: "Customer",
     },
   });
 
@@ -290,7 +290,7 @@ function Register() {
             <Controller
               name="role"
               control={control}
-              defaultValue="Admin"
+              defaultValue="Customer"
               rules={{
                 required: "Role is required",
               }}
@@ -338,6 +338,7 @@ function Register() {
                     },
                   }}
                 >
+                  <MenuItem value="Customer">Customer</MenuItem>
                   <MenuItem value="Admin">Admin</MenuItem>
                 </TextField>
               )}
