@@ -27,6 +27,10 @@ function NewRelease() {
     fetchBooks();
   }, []);
 
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <section className="new-release-section py-10 bg-[#FCECEC]">
       <h3 className="sub-header text-center text-[13px] font-medium tracking-widest text-[#7A7A7A] uppercase">
@@ -70,7 +74,10 @@ function NewRelease() {
           </div>
           <button
             className="text-base font-bold text-[#ED553B] flex justify-center items-center gap-1"
-            onClick={() => navigate("/home/products")}
+            onClick={() => {
+              navigate("/home/products");
+              scrollToTop();
+            }}
           >
             View all products
             <img src={redRightArrow} alt="right arrow" />
