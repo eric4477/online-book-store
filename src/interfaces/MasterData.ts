@@ -7,3 +7,10 @@ export interface Book {
   auther?: string;
   image?: string;
 }
+
+export interface SidebarProps {
+  isFixed?: boolean;
+  open?: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+

@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import BookCard from "../../../../shared/BookCard";
 import arrowDown from "../../../../assets/images/arrow-down.svg";
 import customIcon from "../../../../assets/images/customIcon2.svg";
-import dashesIcon from "../../../../assets/images/dsahes.svg";
+import FilterSideMenu from "./FilterSideMenu";
+import { SidebarProps } from "../../../../interfaces/MasterData";
 
 import {
   Pagination,
@@ -17,7 +18,7 @@ import axios from "axios";
 import { masterUrls } from "../../../../constants/URL_END_POINTS";
 import { Book } from "../../../../interfaces/MasterData";
 
-function BooksPagination() {
+function BooksPagination({ open, setOpen }: SidebarProps) {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -34,12 +35,12 @@ function BooksPagination() {
         );
         setBooks(response.data.data);
         setTotalBooks(response.data.total);
-        console.error("Failed to fetch books", Error);
+      } catch (error) {
+        console.error("Failed to fetch books", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchBooks();
   }, [page, booksPerPage]);
 
@@ -66,14 +67,14 @@ function BooksPagination() {
   const endIndex = Math.min(page * booksPerPage, totalBooks);
 
   return (
-    <div className="grow  ">
+    <div className="grow">
       {loading ? (
         <div className="flex items-center justify-center h-full">
           <CircularProgress />
         </div>
       ) : (
         <>
-          <div className="flex flex-row items-center justify-between mb-10 pr-12">
+          <div className="flex flex-row items-center justify-between mb-10 pr-2 lg:pr-12 flex-wrap gap-5">
             <Button
               sx={{
                 color: "#393280",
@@ -138,15 +139,26 @@ function BooksPagination() {
               <span>
                 <img src={customIcon} alt="custom icon" />
               </span>
-              <span>
-                <img src={dashesIcon} alt="custom icon" />
-              </span>
+              <FilterSideMenu open={open} setOpen={setOpen} />
             </div>
           </div>
 
           <Grid paddingBottom="30px" container spacing={4}>
             {books.map((book) => (
-              <Grid item xs={12} sm={6} md={4} key={book._id}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                key={book._id}
+                sx={{
+                  "@media (max-width:600px)": {
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                  },
+                }}
+              >
                 <BookCard book={book} />
               </Grid>
             ))}
