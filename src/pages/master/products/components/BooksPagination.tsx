@@ -4,6 +4,7 @@ import arrowDown from "../../../../assets/images/arrow-down.svg";
 import customIcon from "../../../../assets/images/customIcon2.svg";
 import FilterSideMenu from "./FilterSideMenu";
 import { SidebarProps } from "../../../../interfaces/MasterData";
+import { useSelector } from "react-redux";
 
 import {
   Pagination,
@@ -52,7 +53,11 @@ function BooksPagination({ open, setOpen }: SidebarProps) {
     _event: React.MouseEvent<HTMLElement>,
     value: number
   ) => {
-    setBooksPerPage(value);
+    if (value) {
+      setBooksPerPage(value);
+      // Reset to the first page after changing items per page
+      setPage(1);
+    }
     setAnchorEl(null);
   };
 
