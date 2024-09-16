@@ -1,12 +1,12 @@
 import { Book } from "../interfaces/MasterData";
+import { useAppDispatch } from "../redux/hooks";
 import { getRandomBookImg } from "../constants/FUNCTIONS";
 import { getRandomBookAuthor } from "../constants/FUNCTIONS";
-import { useDispatch } from "react-redux";
 import { memo } from "react";
 import { addToCart } from "../redux/cartSlice";
 
 function BookCard({ book }: { book: Book }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const bookImgSrc = getRandomBookImg();
   const bookAuthor = getRandomBookAuthor();
   const handleAddToCart = () => {
