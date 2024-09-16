@@ -9,11 +9,13 @@ import { RootState } from "../redux/store";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { totalQuantity } = useSelector((state: RootState) => state.cart);
   const { showLinks, showLogo } = useSelector(
     (state: RootState) => state.navbar
   );
+
   return (
-    <nav className="home-navbar flex items-center justify-between py-5 px-10 max-sm:px-5">
+    <nav className="navbar flex items-center justify-between py-5 px-10 max-sm:px-5">
       {!showLogo ? (
         <div
           className="flex items-center w-[86px] h-[86px] rounded-full bg-[#C4C4C4]
@@ -84,14 +86,27 @@ function Navbar() {
           <img src={profileIcon} alt="profile button" />
         </button>
         <span className="w-[2px] h-5 bg-[#D1D1D1]" />
-        <button>
-          <img src={shoppingIcon} alt="profile button" />
-        </button>
+        <div className="relative">
+          {totalQuantity > 0 && (
+            <span
+              className={`absolute text-xs top-[-16px] ${
+                totalQuantity >= 10 ? "right-[-15px]" : "right-[-14px] px-[6px]"
+              }  bg-[#ED553B] text-white  font-semibold rounded-[100%] px-[4px] py-[2px]`}
+            >
+              {totalQuantity}
+            </span>
+          )}
+
+          <button onClick={() => navigate("/home/cart")}>
+            <img src={shoppingIcon} alt="profile button" />
+          </button>
+        </div>
         <span className="w-[2px] h-5 bg-[#D1D1D1]" />
         <button>
           <img src={heartIcon} alt="profile button" />
         </button>
       </div>
+
       <HamburgerMenu />
     </nav>
   );
