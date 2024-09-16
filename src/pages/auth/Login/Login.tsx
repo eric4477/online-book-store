@@ -53,7 +53,7 @@ function Login() {
 
   useEffect(() => {
     dispatch(clearToken());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="login-page flex-grow pt-12 font-manrope">
