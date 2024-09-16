@@ -4,7 +4,6 @@ import arrowDown from "../../../../assets/images/arrow-down.svg";
 import customIcon from "../../../../assets/images/customIcon2.svg";
 import FilterSideMenu from "./FilterSideMenu";
 import { SidebarProps } from "../../../../interfaces/MasterData";
-import { useSelector } from "react-redux";
 
 import {
   Pagination,
