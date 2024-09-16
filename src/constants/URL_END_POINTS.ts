@@ -22,4 +22,5 @@ export const masterUrls = {
     return `${baseUrl}/basket/${id}`;
   },
   getBasket: `${baseUrl}/basket`,
+  getOne: `${baseUrl}/book`,
 };
