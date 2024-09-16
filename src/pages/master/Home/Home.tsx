@@ -5,12 +5,14 @@ import Hero from "./components/Hero";
 import Navbar from "../../../shared/Navbar";
 import NewRelease from "./components/NewRelease";
 import { setShowLinks, setShowLogo } from "../../../redux/navbarSlice";
-import { useDispatch } from "react-redux";
+import { fetchBasket } from "../../../redux/cartSlice";
+import { useAppDispatch } from "../../../redux/hooks";
 
 function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(fetchBasket());
     dispatch(setShowLinks(true));
     dispatch(setShowLogo(false));
   }, [dispatch]);
