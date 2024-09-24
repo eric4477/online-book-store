@@ -5,6 +5,7 @@ import { fetchSingleBook } from "../../../redux/cartSlice";
 import removeIcon from "../../../assets/images/remove-icon.svg";
 import bookImg from "../../../assets/images/book-img-6.jpg";
 import { useAppDispatch } from "../../../redux/hooks";
+import { Elements } from "@stripe/react-stripe-js";
 
 import {
   Table,
@@ -30,6 +31,8 @@ import PageNavigator from "../../../shared/PageNavigator";
 import { setShowLinks, setShowLogo } from "../../../redux/navbarSlice";
 import Navbar from "../../../shared/Navbar";
 import { Book } from "../../../interfaces/MasterData";
+import ShippingForm from "./components/ShippingForm";
+import { loadStripe } from "@stripe/stripe-js";
 
 interface CartItem {
   book: Book | string;
@@ -63,6 +66,11 @@ function Cart() {
   }, [items, dispatch]);
 
   const TAX_RATE = 0.05; // 5% tax
+
+  //publishable key
+  const stripePromise = loadStripe(
+    "pk_test_51OTjURBQWp069pqTmqhKZHNNd3kMf9TTynJtLJQIJDOSYcGM7xz3DabzCzE7bTxvuYMY0IX96OHBjsysHEKIrwCK006Mu7mKw8"
+  );
 
   // memo callback function for calculating the total price
   const totalCost = useMemo(() => {
@@ -253,7 +261,9 @@ function Cart() {
                         }}
                       >
                         {cartStatus === "loading" ? (
-                          <Skeleton variant="text" width={20} height={50} />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton variant="text" width={20} height={50} />
+                          </Box>
                         ) : (
                           index + 1
                         )}
@@ -267,11 +277,13 @@ function Cart() {
                         }}
                       >
                         {cartStatus === "loading" ? (
-                          <Skeleton
-                            variant="rectangular"
-                            width={70}
-                            height={95}
-                          />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton
+                              variant="rectangular"
+                              width={70}
+                              height={95}
+                            />
+                          </Box>
                         ) : (
                           <Box
                             sx={{
@@ -297,18 +309,22 @@ function Cart() {
                         }}
                       >
                         {cartStatus === "loading" ? (
-                          <Skeleton variant="text" width={40} />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton variant="text" width={100} />
+                          </Box>
                         ) : (
                           bookDetails?.name
                         )}
                       </TableCell>
                       <TableCell sx={{ textAlign: "center" }}>
                         {cartStatus === "loading" ? (
-                          <Skeleton
-                            variant="rectangular"
-                            width={100}
-                            height={40}
-                          />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton
+                              variant="rectangular"
+                              width={100}
+                              height={40}
+                            />
+                          </Box>
                         ) : (
                           <Box
                             sx={{
@@ -379,7 +395,9 @@ function Cart() {
                         }}
                       >
                         {cartStatus === "loading" ? (
-                          <Skeleton variant="text" width={50} />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton variant="text" width={50} />
+                          </Box>
                         ) : (
                           `${bookDetails?.price} AED`
                         )}
@@ -393,7 +411,9 @@ function Cart() {
                         }}
                       >
                         {cartStatus === "loading" ? (
-                          <Skeleton variant="text" width={80} />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton variant="text" width={80} />
+                          </Box>
                         ) : (
                           `${subtotal} AED`
                         )}
@@ -405,11 +425,13 @@ function Cart() {
                         }}
                       >
                         {cartStatus === "loading" ? (
-                          <Skeleton
-                            variant="rectangular"
-                            width={30}
-                            height={30}
-                          />
+                          <Box sx={{ display: "grid", placeItems: "center" }}>
+                            <Skeleton
+                              variant="rectangular"
+                              width={30}
+                              height={30}
+                            />
+                          </Box>
                         ) : (
                           <Button
                             onClick={() => handleRemoveFromCart(bookId)}
@@ -430,8 +452,6 @@ function Cart() {
           </TableContainer>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
               paddingTop: "20px",
               minWidth: "350px",
               "@media (max-width: 1000px)": {
@@ -578,6 +598,9 @@ function Cart() {
             </Box>
           </Box>
         </Box>
+        <Elements stripe={stripePromise}>
+          <ShippingForm />
+        </Elements>
       </Box>
     </div>
   );

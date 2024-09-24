@@ -18,9 +18,8 @@ export const masterUrls = {
 
   addBook: `${baseUrl}/basket/item`,
   deleteBook: `${baseUrl}/basket/item`,
-  updateBook: (id: string) => {
-    return `${baseUrl}/basket/${id}`;
-  },
+  updateBook: (id: string) => `${baseUrl}/basket/${id}`,
   getBasket: `${baseUrl}/basket`,
   getOne: `${baseUrl}/book`,
+  createOrder: (id: string) => `${baseUrl}/order/${id}`,
 };

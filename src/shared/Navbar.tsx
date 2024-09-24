@@ -86,7 +86,7 @@ function Navbar() {
           <img src={profileIcon} alt="profile button" />
         </button>
         <span className="w-[2px] h-5 bg-[#D1D1D1]" />
-        <div className="relative">
+        <div className="relative flex items-center justify-center">
           {totalQuantity > 0 && (
             <span
               className={`absolute text-xs top-[-16px] ${

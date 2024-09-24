@@ -64,3 +64,8 @@
   visibility: visible; /* This will make the button visible on hover */
   opacity: 1;
 }
+@media screen and (max-width: 1000px) {
+  .cart-page form {
+    width: 100% !important;
+  }
+}

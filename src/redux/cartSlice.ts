@@ -15,6 +15,7 @@ interface CartState {
   error: string | null;
   totalQuantity: number;
   booksDetails: { [key: string]: Book };
+  cart_id: string;
 }
 
 const initialState: CartState = {
@@ -23,6 +24,7 @@ const initialState: CartState = {
   error: null,
   totalQuantity: 0,
   booksDetails: {},
+  cart_id: "",
 };
 
 export const addToCart = createAsyncThunk(
@@ -234,6 +236,21 @@ const cartSlice = createSlice({
       .addCase(fetchBasket.fulfilled, (state, action) => {
         state.status = "succeeded";
 
+        // return if there is no items
+        if (
+          !action.payload?.items ||
+          !Array.isArray(action.payload.items) ||
+          action.payload.items.length === 0
+        ) {
+          state.items = [];
+          state.totalQuantity = 0;
+          return;
+        }
+
+        // Save the cart_id to the state
+        state.cart_id = action.payload?._id;
+        localStorage.setItem("cartId", action.payload._id);
+        console.log(action.payload._id);
         const uniqueItems = action.payload.items
           .filter(
             (item: { book: { _id: string } | string; quantity: number }) =>
