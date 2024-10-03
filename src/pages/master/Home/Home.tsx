@@ -7,6 +7,7 @@ import NewRelease from "./components/NewRelease";
 import { setShowLinks, setShowLogo } from "../../../redux/navbarSlice";
 import { fetchBasket } from "../../../redux/cartSlice";
 import { useAppDispatch } from "../../../redux/hooks";
+import SaleBooks from "./components/SaleBooks";
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ function Home() {
       <Categories />
       <NewRelease />
       <FeaturedBooks />
+      <SaleBooks />
     </div>
   );
 }
