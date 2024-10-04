@@ -3,7 +3,7 @@ import CustomButton from "./CustomButton";
 
 export default function Categories() {
   return (
-    <section className="categories-section py-10 px-10 sm:px-24">
+    <section id="books" className="categories-section py-10 px-10 sm:px-24">
       <div className="subheader flex items-center gap-3">
         <span className="w-8 h-[2px] bg-[#ED553B]"></span>
         <h3 className="text-[#ED553B] font-bold text-sm tracking-widest">

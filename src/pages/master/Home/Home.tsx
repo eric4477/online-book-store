@@ -8,6 +8,7 @@ import { setShowLinks, setShowLogo } from "../../../redux/navbarSlice";
 import { fetchBasket } from "../../../redux/cartSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import SaleBooks from "./components/SaleBooks";
+import Newsletter from "./components/NewSettler";
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ function Home() {
       <NewRelease />
       <FeaturedBooks />
       <SaleBooks />
+      <Newsletter />
     </div>
   );
 }

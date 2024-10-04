@@ -4,7 +4,7 @@ import SwiperCore from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import bookImg from "../../../../assets/images/hero-book2.png";
 import CustomButton from "./CustomButton";
@@ -12,10 +12,16 @@ import CustomButton from "./CustomButton";
 function Hero() {
   const swiperRef = useRef<SwiperCore | null>(null);
   return (
-    <section className="hero-section linear-gradient-hero-bg relative">
+    <section
+      id="home"
+      className="hero-section linear-gradient-hero-bg relative"
+    >
       <Swiper
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
+        autoplay={{
+          delay: 2500,
+        }}
         spaceBetween={30}
         slidesPerView={1}
         loop={true}

@@ -42,9 +42,9 @@ function SaleBooks() {
   }, []);
 
   return (
-    <section className="pb-10 px-20 max-sm:px-10">
+    <section className="pb-10 px-20 max-sm:px-10 max-[400px]:px-4">
       <div
-        className="bg-[#FCECEC] rounded-md py-10 px-12 flex flex-col lg:flex-row items-start justify-between 
+        className="bg-[#FCECEC] rounded-xl py-10 px-12 flex flex-col lg:flex-row items-start justify-between 
       gap-1 max-lg:gap-4 max-[500px]:px-7"
       >
         <div className="flex flex-col pt-4">

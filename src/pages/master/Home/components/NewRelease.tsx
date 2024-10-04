@@ -32,7 +32,10 @@ function NewRelease() {
   }
 
   return (
-    <section className="new-release-section py-10 bg-[#FCECEC]">
+    <section
+      id="new-release"
+      className="new-release-section py-10 bg-[#FCECEC]"
+    >
       <h3 className="sub-header text-center text-[13px] font-medium tracking-widest text-[#7A7A7A] uppercase">
         Some quality items
       </h3>
@@ -60,7 +63,11 @@ function NewRelease() {
         spaceBetween={30}
         loop={false}
         pagination={{ clickable: true, el: ".custom-swiper-pagination" }}
-        autoplay={{ delay: 2500 }}
+        autoplay={{
+          delay: 2500,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
+        }}
       >
         {books.map((book) => (
           <SwiperSlide key={book._id} className="px-4">
