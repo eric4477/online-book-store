@@ -9,6 +9,8 @@ import { fetchBasket } from "../../../redux/cartSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import SaleBooks from "./components/SaleBooks";
 import Newsletter from "./components/NewSettler";
+import Articles from "./components/Articles";
+import Footer from "../../../shared/Footer";
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -28,6 +30,8 @@ function Home() {
       <FeaturedBooks />
       <SaleBooks />
       <Newsletter />
+      <Articles />
+      <Footer />
     </div>
   );
 }
