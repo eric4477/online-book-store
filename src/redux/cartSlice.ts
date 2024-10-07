@@ -250,7 +250,6 @@ const cartSlice = createSlice({
         // Save the cart_id to the state
         state.cart_id = action.payload?._id;
         localStorage.setItem("cartId", action.payload._id);
-        console.log(action.payload._id);
         const uniqueItems = action.payload.items
           .filter(
             (item: { book: { _id: string } | string; quantity: number }) =>
