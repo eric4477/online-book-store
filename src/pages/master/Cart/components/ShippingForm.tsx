@@ -126,6 +126,14 @@ function ShippingForm() {
     }
   };
 
+  const getMargin = () => {
+    if (isSmallScreen) {
+      return 0;
+    } else {
+      return "10px"; // Default margin
+    }
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -159,7 +167,6 @@ function ShippingForm() {
         <Grid style={{ padding: "0" }} item xs={12} sm={6}>
           <FormControl
             sx={{
-              backgroundColor: "white",
               borderRadius: "5px",
               width: "100%",
             }}
@@ -199,7 +206,14 @@ function ShippingForm() {
               <MenuItem value="Australia">Australia</MenuItem>
             </Select>
             {errors.country && (
-              <FormHelperText error>
+              <FormHelperText
+                error
+                sx={{
+                  mb: getMargin(),
+                  mx: 0,
+                  color: "red",
+                }}
+              >
                 {typeof errors.country?.message === "string"
                   ? errors.country?.message
                   : ""}
@@ -207,12 +221,9 @@ function ShippingForm() {
             )}
           </FormControl>
         </Grid>
+
         <Grid style={{ padding: getPadding() }} item xs={12} sm={6}>
           <TextField
-            sx={{
-              backgroundColor: "white",
-              borderRadius: "5px",
-            }}
             required
             label="City"
             fullWidth
@@ -224,13 +235,60 @@ function ShippingForm() {
               },
             })}
             error={!!errors.city}
-            helperText={
-              typeof errors.city?.message === "string"
-                ? errors.city?.message
-                : ""
-            }
             InputProps={{
               sx: {
+                backgroundColor: "white",
+                borderRadius: "5px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderRadius: "5px",
+                  border: "2px solid #D3D3D3",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ED553B",
+                },
+              },
+            }}
+            InputLabelProps={{
+              sx: {
+                "&.Mui-focused": {
+                  color: "#ED553B",
+                },
+              },
+            }}
+          />
+          {errors.city && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.city?.message === "string"
+                ? errors.city?.message // Display the correct error message for city
+                : ""}
+            </FormHelperText>
+          )}
+        </Grid>
+
+        <Grid style={{ padding: "0" }} item xs={12} sm={6}>
+          <TextField
+            required
+            label="State"
+            fullWidth
+            {...register("state", {
+              required: "State is required",
+              pattern: {
+                value: /^[A-Za-z\s]+$/, // Only letters and spaces allowed
+                message: "State must contain only letters",
+              },
+            })}
+            error={!!errors.state}
+            InputProps={{
+              sx: {
+                backgroundColor: "white", // Only apply white background to input
+                borderRadius: "5px",
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderRadius: "5px",
                   border: "2px solid #D3D3D3",
@@ -248,49 +306,24 @@ function ShippingForm() {
               },
             }}
           />
-        </Grid>
-        <Grid style={{ padding: "0" }} item xs={12} sm={6}>
-          <TextField
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
-            required
-            label="State"
-            fullWidth
-            {...register("state", {
-              required: "State is required",
-              pattern: {
-                value: /^[A-Za-z\s]+$/, // Only letters and spaces allowed
-                message: "State must contain only letters",
-              },
-            })}
-            error={!!errors.state}
-            helperText={
-              typeof errors.state?.message === "string"
+          {errors.state && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.state?.message === "string"
                 ? errors.state?.message
-                : ""
-            }
-            InputProps={{
-              sx: {
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderRadius: "5px",
-                  border: "2px solid #D3D3D3",
-                },
-                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#ED553B", // Focus color when input is focused
-                },
-              },
-            }}
-            InputLabelProps={{
-              sx: {
-                "&.Mui-focused": {
-                  color: "#ED553B", // Label color on focus
-                },
-              },
-            }}
-          />
+                : ""}
+            </FormHelperText>
+          )}
         </Grid>
+
         <Grid style={{ padding: getPadding() }} item xs={12} sm={6}>
           <TextField
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
             required
             label="Building"
             type="number"
@@ -303,19 +336,16 @@ function ShippingForm() {
               },
             })}
             error={!!errors.building}
-            helperText={
-              typeof errors.building?.message === "string"
-                ? errors.building?.message
-                : ""
-            }
             InputProps={{
               sx: {
+                backgroundColor: "white", // Only apply white background to input
+                borderRadius: "5px",
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderRadius: "5px",
                   border: "2px solid #D3D3D3",
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#ED553B", // Focus color when input is focused
+                  borderColor: "#ED553B",
                 },
               },
             }}
@@ -327,28 +357,40 @@ function ShippingForm() {
               },
             }}
           />
+
+          {errors.building && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.building?.message === "string"
+                ? errors.building?.message
+                : ""}
+            </FormHelperText>
+          )}
         </Grid>
+
         <Grid style={{ padding: "0" }} item xs={12} sm={6}>
           <TextField
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
             required
             label="Street"
             fullWidth
             {...register("street", { required: "Street is required" })}
             error={!!errors.street}
-            helperText={
-              typeof errors.street?.message === "string"
-                ? errors.street?.message
-                : ""
-            }
             InputProps={{
               sx: {
+                backgroundColor: "white", // Only apply white background to input
+                borderRadius: "5px",
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderRadius: "5px",
                   border: "2px solid #D3D3D3",
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#ED553B", // Focus color when input is focused
+                  borderColor: "#ED553B",
                 },
               },
             }}
@@ -360,11 +402,25 @@ function ShippingForm() {
               },
             }}
           />
+
+          {errors.street && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.street?.message === "string"
+                ? errors.street?.message
+                : ""}
+            </FormHelperText>
+          )}
         </Grid>
 
         <Grid style={{ padding: getPadding() }} item xs={12} sm={6}>
           <TextField
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
             required
             label="Floor"
             type="number"
@@ -377,16 +433,45 @@ function ShippingForm() {
               },
             })}
             error={!!errors.floor}
-            helperText={
-              typeof errors.floor?.message === "string"
-                ? errors.floor?.message
-                : ""
-            }
+            InputProps={{
+              sx: {
+                backgroundColor: "white", // Only apply white background to input
+                borderRadius: "5px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderRadius: "5px",
+                  border: "2px solid #D3D3D3",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ED553B",
+                },
+              },
+            }}
+            InputLabelProps={{
+              sx: {
+                "&.Mui-focused": {
+                  color: "#ED553B", // Label color on focus
+                },
+              },
+            }}
           />
+
+          {errors.floor && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.floor?.message === "string"
+                ? errors.floor?.message
+                : ""}
+            </FormHelperText>
+          )}
         </Grid>
         <Grid style={{ padding: "0" }} item xs={12} sm={6}>
           <TextField
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
             required
             label="Appartment"
             type="number"
@@ -399,19 +484,16 @@ function ShippingForm() {
               },
             })}
             error={!!errors.appartment}
-            helperText={
-              typeof errors.appartment?.message === "string"
-                ? errors.appartment?.message
-                : ""
-            }
             InputProps={{
               sx: {
+                backgroundColor: "white", // Only apply white background to input
+                borderRadius: "5px",
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderRadius: "5px",
                   border: "2px solid #D3D3D3",
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#ED553B", // Focus color when input is focused
+                  borderColor: "#ED553B",
                 },
               },
             }}
@@ -423,10 +505,23 @@ function ShippingForm() {
               },
             }}
           />
+          {errors.appartment && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.appartment?.message === "string"
+                ? errors.appartment?.message
+                : ""}
+            </FormHelperText>
+          )}
         </Grid>
         <Grid style={{ padding: getPadding() }} item xs={12} sm={6}>
           <TextField
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
             required
             label="Mobile"
             fullWidth
@@ -438,19 +533,16 @@ function ShippingForm() {
               },
             })}
             error={!!errors.mobile}
-            helperText={
-              typeof errors.mobile?.message === "string"
-                ? errors.mobile?.message
-                : ""
-            }
             InputProps={{
               sx: {
+                backgroundColor: "white", // Only apply white background to input
+                borderRadius: "5px",
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderRadius: "5px",
                   border: "2px solid #D3D3D3",
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#ED553B", // Focus color when input is focused
+                  borderColor: "#ED553B",
                 },
               },
             }}
@@ -462,6 +554,21 @@ function ShippingForm() {
               },
             }}
           />
+
+          {errors.mobile && (
+            <FormHelperText
+              error
+              sx={{
+                mb: getMargin(),
+                mx: 0,
+                color: "red",
+              }}
+            >
+              {typeof errors.mobile?.message === "string"
+                ? errors.mobile?.message // Display the correct error message for city
+                : ""}
+            </FormHelperText>
+          )}
         </Grid>
         <Grid style={{ padding: "0" }} item xs={12}>
           <TextField
