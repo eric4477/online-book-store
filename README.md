@@ -16,6 +16,7 @@ Check out the live site here: [E-Commerce Book Store](https://online-book-store-
 - **React.js**: Component-based UI library
 - **Redux**: State management for user authentication and cart
 - **React Router**: Client-side routing for navigating across the app
+- **React Toastify**: Notification library for toasts
 - **Tailwind CSS**: Utility-first CSS framework for styling and responsiveness
 - **Material UI (MUI)**: React components for styling and layout
 - **React Hook Form**: Form handling and validation
@@ -51,7 +52,7 @@ Check out the live site here: [E-Commerce Book Store](https://online-book-store-
    - Ensured that users cannot access certain pages without being authenticated.
 
 5. **Swiper.js for Sliders**
-   - Used **Swiper.js** for responsive sliders on the Home Page and Product Details page.
+   - Used **Swiper.js** for responsive sliders on the Home Page.
 
 6. **Books Pagination with Material UI**
    - Integrated **Material UI** for paginating books, allowing users to browse multiple pages of book listings.
@@ -84,6 +85,12 @@ Check out the live site here: [E-Commerce Book Store](https://online-book-store-
 
 12. **Icons with React Icons**
     - Used **React Icons** for consistent, visually appealing icons throughout the application.
+
+13. **Notifications with React Toastify**
+    - Implemented user-friendly notifications for errors and success messages using **React Toastify**. This includes messages like:
+      - Successful order creation
+      - Cart validation errors
+      - Payment errors
 
 ## API
 The app is fully integrated with a Postman collection API for managing:
