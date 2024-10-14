@@ -6,9 +6,11 @@ import heartIcon from "../assets/images/heart-icon.svg";
 import shoppingIcon from "../assets/images/shopping-icon.svg";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { Link } from "react-router-dom";
 
 export default function HamburgerMenu() {
   const { showLinks } = useSelector((state: RootState) => state.navbar);
+  const { totalQuantity } = useSelector((state: RootState) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer =
@@ -112,10 +114,24 @@ export default function HamburgerMenu() {
             ) : (
               <span className="w-[40px] h-[2px] bg-[#393280]" />
             )}
+            <div className="relative flex items-center justify-center">
+              {totalQuantity > 0 && (
+                <span
+                  className={`absolute text-xs top-[-16px] ${
+                    totalQuantity >= 10
+                      ? "right-[-15px]"
+                      : "right-[-14px] px-[6px]"
+                  }  bg-[#ED553B] text-white  font-semibold rounded-[100%] px-[4px] py-[2px]`}
+                >
+                  {totalQuantity}
+                </span>
+              )}
 
-            <button>
-              <img src={shoppingIcon} alt="profile button" />
-            </button>
+              <Link to={"/home/cart"}>
+                <img src={shoppingIcon} alt="profile button" />
+              </Link>
+            </div>
+
             {showLinks ? (
               <span className="w-[2px] h-5 bg-[#D1D1D1]" />
             ) : (
